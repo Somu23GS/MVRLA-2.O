@@ -1,0 +1,47 @@
+# 09 — Lens comparison design and journey
+s = base_slide('Material Lens v5.6: Compare Before Confirmation', '08 · Side-by-side comparison design', 9, dark=True,
+               subtitle='Every candidate shows the user photo, the admin reference, the overall score and a deliberate confirmation action.')
+# Comparison mockup
+rect(s, 0.65, 1.55, 7.60, 4.92, NAVY2, NAVY3, True)
+text(s, 0.95, 1.76, 3.70, 0.26, 'CANDIDATE #1 OF 5', 10, CYAN, True, MONO)
+text(s, 6.47, 1.69, 1.25, 0.48, '82%', 29, GREEN, True, FONT_DISPLAY, align=PP_ALIGN.RIGHT)
+text(s, 6.17, 2.13, 1.55, 0.18, 'ILLUSTRATIVE SCORE', 7.2, '91A5BB', True, align=PP_ALIGN.RIGHT)
+text(s, 0.95, 2.13, 3.15, 0.20, 'YOUR PHOTO', 8.5, 'AFC0D2', True, MONO, align=PP_ALIGN.CENTER)
+text(s, 4.75, 2.13, 3.15, 0.20, 'ADMIN REFERENCE', 8.5, 'AFC0D2', True, MONO, align=PP_ALIGN.CENTER)
+rect(s, 0.95, 2.39, 3.15, 1.54, '07111F', '29445E', True)
+rect(s, 4.75, 2.39, 3.15, 1.54, '07111F', '29445E', True)
+# Same bearing with different scale and illumination
+oval(s, 2.00, 2.60, 1.05, 1.05, '9AA8B5', 'D4DEE7', 1.2)
+oval(s, 2.30, 2.90, 0.45, 0.45, '07111F', '5D7185', 1.0)
+oval(s, 5.85, 2.66, 0.95, 0.95, '718391', 'B9C6D0', 1.2)
+oval(s, 6.125, 2.935, 0.40, 0.40, '07111F', '4B6173', 1.0)
+oval(s, 4.26, 2.96, 0.38, 0.38, CYAN, None)
+text(s, 4.26, 2.99, 0.38, 0.28, 'VS', 9, NAVY, True, align=PP_ALIGN.CENTER, valign=MSO_ANCHOR.MIDDLE)
+text(s, 0.95, 4.13, 5.55, 0.29, 'Cam Follower Bearing KR22', 16, WHITE, True)
+text(s, 0.95, 4.47, 5.70, 0.22, '262-030-00010  ·  Bay 1  ·  BM Stacking', 9.5, 'AFC0D2', False, MONO)
+for j, (lab, val) in enumerate([('Luma structure',84),('Edge geometry',79),('Perceptual pattern',76)]):
+    yy = 4.84 + j*0.29
+    text(s, 0.95, yy, 1.55, 0.19, lab, 8.7, 'C4D3E3')
+    rect(s, 2.60, yy+0.045, 3.90, 0.075, NAVY3, None, True)
+    rect(s, 2.60, yy+0.045, 3.90*val/100, 0.075, CYAN if j != 1 else GREEN, None, True)
+    text(s, 6.66, yy-0.01, 0.55, 0.20, str(val)+'%', 8.7, WHITE, True, MONO, align=PP_ALIGN.RIGHT)
+rect(s, 0.95, 5.80, 6.95, 0.43, CYAN, None, True)
+text(s, 0.95, 5.87, 6.95, 0.27, 'COMPARE  →  CONFIRM & OPEN PART', 11, NAVY, True, align=PP_ALIGN.CENTER)
+# User flow
+rect(s, 8.50, 1.55, 4.18, 4.92, NAVY2, NAVY3, True)
+text(s, 8.78, 1.78, 3.55, 0.28, 'USER FLOW', 11, CYAN, True, MONO)
+flow56 = [
+    ('1','Open Lens and capture or select a photo.'),
+    ('2','Optionally enter a part-start filter.'),
+    ('3','Analyze the component with rotation variants.'),
+    ('4','Review five side-by-side candidates.'),
+    ('5','Open the full similarity breakdown.'),
+    ('6','Confirm the correct part to open details.')
+]
+for i,(n,t) in enumerate(flow56):
+    yy = 2.23 + i*0.65
+    oval(s, 8.78, yy, 0.33, 0.33, CYAN if i < 3 else GREEN, None)
+    text(s, 8.78, yy+0.01, 0.33, 0.27, n, 9, NAVY if i < 3 else WHITE, True, align=PP_ALIGN.CENTER, valign=MSO_ANCHOR.MIDDLE)
+    text(s, 9.28, yy-0.01, 3.05, 0.47, t, 11.2, 'D5E1EC')
+notes(s, 'This is the new v5.6 interaction design. The user no longer taps a text-only result and immediately opens a part. Each candidate presents the user photo and admin reference together. The Compare and Confirm screen adds the overall score, five feature bars and the correct material index before the existing detail drawer opens. The score and bearing graphics on this slide are illustrative, not measured production results.')
+

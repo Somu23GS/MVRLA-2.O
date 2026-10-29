@@ -1,0 +1,25 @@
+# 10 — Matching engine v5.6
+s = base_slide('Visual Matching Engine — Version 5.6', '09 · Multi-feature comparison', 10,
+               subtitle='Foreground-focused normalization and five signals replace the earlier brightness-heavy comparison.')
+features56 = [
+    ('30% · Luma', '32 × 32 normalized crop with zero-mean, unit-norm correlation.', CYAN),
+    ('35% · HOG edges', 'Gradient orientation cells with block normalization for shape and edges.', GREEN),
+    ('20% · pHash', 'A 63-bit DCT perceptual hash for robust visual-pattern comparison.', CYAN),
+    ('10% · Colour', 'A 64-bin RGB histogram compares colour distribution overlap.', AMBER),
+    ('5% · Aspect', 'Rotation-invariant crop aspect ratio adds a small geometric check.', GREEN)
+]
+for i,(t,b,col) in enumerate(features56):
+    card(s, 0.65+i*2.44, 1.70, 2.27, 2.70, t, b, col, False, 14.5, 11.4)
+rect(s, 0.65, 4.69, 12.03, 0.66, NAVY2, None, True)
+text(s, 0.85, 4.86, 11.63, 0.30,
+     'Score = 0.30 luma + 0.35 HOG + 0.20 pHash + 0.10 colour + 0.05 aspect',
+     14.2, WHITE, True, MONO, align=PP_ALIGN.CENTER)
+label(s, 0.67, 5.59, 2.0, 'Result badges')
+pill(s, 0.65, 5.94, 1.63, 'GREEN  ≥ 75', GREEN2, GREEN, 11)
+pill(s, 2.48, 5.94, 1.83, 'AMBER  50–74', AMBER2, AMBER, 11)
+pill(s, 4.51, 5.94, 1.63, 'GREY  < 50', PALE, INK2, 11)
+text(s, 6.58, 5.70, 6.10, 0.65,
+     'Query variants at 0°, 90°, 180° and 270° improve orientation tolerance. Displayed scores are capped at 99% and remain similarity scores, not probabilities.',
+     11.8, INK2, True, valign=MSO_ANCHOR.MIDDLE)
+notes(s, 'Version 5.6 first estimates the foreground from border contrast and a central connected component, then normalizes a 32 by 32 crop. It compares normalized luma, HOG edge geometry, a DCT perceptual hash, colour overlap and aspect ratio. Four query orientations are evaluated with a small penalty for rotated alternatives. Reference descriptors and their thumbnails use the new v56 cache prefix, so stale v2 descriptors are not reused.')
+
